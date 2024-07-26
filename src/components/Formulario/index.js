@@ -5,15 +5,6 @@ import Button from '../Botao'
 import { useState } from 'react'
 
 const Form = (props) => {
-    const teams = [
-        'Programação',
-        'Front-end',
-        'DataScience',
-        'Devops',
-        'UX e Design',
-        'Mobile',
-        'Security'
-    ]
 
     const [name, setName] = useState('')
     const [role, setRole] = useState('')
@@ -28,6 +19,10 @@ const Form = (props) => {
             image,
             team
         })
+        setName('')
+        setRole('')
+        setImage('')
+        setTeam('')
     }
 
     return (
@@ -57,7 +52,7 @@ const Form = (props) => {
                 <DropdownList
                     required={true}
                     label="Time"
-                    itens={teams}
+                    itens={props.teams}
                     value={team}
                     onChange={value => setTeam(value)}
                 />
