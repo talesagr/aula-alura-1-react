@@ -1,12 +1,18 @@
 import './CampoTexto.css'
 
-const CampoTexto = (props) => {
+const TextField = (props) => {
+
+    const onDigit = (event => {
+        props.onChange(event.target.value)
+    })
+
+
     return(
         <div className="campo-texto">
             <label>{props.label}</label>
-            <input required={props.required}placeholder={props.placeholder}></input>
+            <input value={props.value} onChange={onDigit} required={props.required}placeholder={props.placeholder}></input>
         </div>
     )
 }
 
-export default CampoTexto
+export default TextField

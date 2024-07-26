@@ -1,10 +1,11 @@
 import './Formulario.css'
-import CampoTexto from '../CampoTexto'
-import ListaSuspensa from '../ListaSuspensa'
-import Botao from '../Botao'
+import TextField from '../CampoTexto'
+import DropdownList from '../ListaSuspensa'
+import Button from '../Botao'
+import { useState } from 'react'
 
-const Formulario = () => {
-    const times = [
+const Form = (props) => {
+    const teams = [
         'Programação',
         'Front-end',
         'DataScience',
@@ -14,25 +15,58 @@ const Formulario = () => {
         'Security'
     ]
 
+    const [name, setName] = useState('')
+    const [role, setRole] = useState('')
+    const [image, setImage] = useState('')
+    const [team, setTeam] = useState('')
+
     const onSave = (event) => {
         event.preventDefault()
-        console.log("AAAAAAA")
+        props.onCreateCard({
+            name,
+            role,
+            image,
+            team
+        })
     }
 
     return (
         <section className='formulario'>
             <form onSubmit={onSave}>
                 <h2>Preencha os dados para criar o card do colaborador</h2>
-                <CampoTexto required={true} label="Nome" placeholder="Digite seu Nome"/>
-                <CampoTexto required={true} label="Cargo" placeholder="Digite seu Cargo"/>
-                <CampoTexto label="Imagem" placeholder="Digite o endereço da Imagem"/>
-                <ListaSuspensa required={true} label="Time" itens={times}/>
-                <Botao>
+                <TextField
+                    required={true}
+                    label="Nome"
+                    placeholder="Digite seu Nome"
+                    value={name}
+                    onChange={value => setName(value)}
+                />
+                <TextField
+                    required={true}
+                    label="Cargo"
+                    placeholder="Digite seu Cargo"
+                    value={role}
+                    onChange={value => setRole(value)}
+                />
+                <TextField
+                    label="Imagem"
+                    placeholder="Digite o endereço da Imagem"
+                    value={image}
+                    onChange={value => setImage(value)}
+                />
+                <DropdownList
+                    required={true}
+                    label="Time"
+                    itens={teams}
+                    value={team}
+                    onChange={value => setTeam(value)}
+                />
+                <Button>
                     Criar Card
-                </Botao>
+                </Button>
             </form>
         </section>
     )
 }
 
-export default Formulario
+export default Form

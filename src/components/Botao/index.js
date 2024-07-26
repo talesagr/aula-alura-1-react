@@ -1,10 +1,10 @@
 import './Botao.css'
 
-const Botao = (props) => {
+const Button = (props) => {
     return (<button className='botao'>
         {props.children}
     </button>
     )
 }
 
-export default Botao
+export default Button
